@@ -1,0 +1,37 @@
+// metoda loadData, która wczyta plik CSV (jako uzupełnienie istniejącego kodu)
+protected function loadData(): array 
+    {
+        $filePath = __DIR__ . '/bookmarks.csv';
+
+        if (!file_exists($filePath)) {
+            return [];
+        }
+
+        $data = [];
+        $handle = fopen($filePath, 'r'); 
+
+        if ($handle !== false) {
+            $header = fgetcsv($handle); 
+
+          
+            while (($row = fgetcsv($handle)) !== false) {
+                if (count($row) < 4) {
+                    continue;
+                }
+
+                $tagsString = implode(',', array_slice($row, 3));
+                $tags = array_map('trim', explode(',', $tagsString));
+
+                $data[$row[0]] = [
+                    'title' => $row[1],
+                    'url'   => $row[2],
+                    'tags'  => $tags,
+                ];
+            }
+
+            fclose($handle);
+        }
+
+        return $data;
+
+    }
