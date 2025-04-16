@@ -1,0 +1,51 @@
+1. Dla przykładu podanego wyżej:
+class Ship
+{
+    protected $name;
+    protected $homeport;
+
+    public function setName(string $name): void 
+    {
+        $this->name = $name;
+    }
+
+    public function getName(): string 
+    {
+        return $this->name;
+    }
+
+    public function setHomeport(string $homeport): void 
+    {
+        $this->homeport = $homeport;
+    }
+
+    public function getHomeport(): string 
+    {
+        return $this->homeport;
+    }
+}
+interfejs to wszystko co jest publiczne, czyli: setName(string $name), getName(): string, setHomeport(string $homeport), getHomeport(): string
+implementacja to to co jest schowane, to co dzieje się wewnątrz, czyli: pola protected $name i protected $homeport i implementacja logiki w metodach ( czyli np. przypisanie wartości pola $this->name)
+
+2. Jeżeli odwołamy się spoza obiektu do pól, to wygeneruje się błąd, ponieważ są to pola protected i sa dostępne tylko wewnątrz obiektu.
+
+3. publiczne akcesory i mutatory dla klasy Ship:
+    public function setName(string $name): void 
+    {
+        $this->name = $name;
+    }
+
+    public function getName(): string 
+    {
+        return $this->name;
+    }
+
+    public function setHomeport(string $homeport): void 
+    {
+        $this->homeport = $homeport;
+    }
+
+    public function getHomeport(): string 
+    {
+        return $this->homeport;
+    }
